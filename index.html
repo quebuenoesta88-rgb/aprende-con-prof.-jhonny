@@ -33,12 +33,28 @@
             background: #2c5f2d;
             display: inline-block;
             width: auto;
-            margin: 0 auto 20px;
+            margin: 0 auto 10px;
             padding: 15px 35px;
             border-radius: 60px;
             font-size: 1.9rem;
             box-shadow: 0 5px 0 #1e3a1e;
             letter-spacing: 1px;
+        }
+
+        .frase-poderosa {
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #ffb347;
+            background: #2c5f2d;
+            display: inline-block;
+            width: auto;
+            margin: 0 auto 15px;
+            padding: 8px 25px;
+            border-radius: 40px;
+            letter-spacing: 1px;
+            font-style: italic;
+            box-shadow: 0 3px 0 #1e3a1e;
         }
 
         .header-bolivia {
@@ -76,7 +92,6 @@
             transform: scale(1.02);
         }
 
-        /* Subpestañas para cultura mundial */
         .sub-tabs {
             display: flex;
             flex-wrap: wrap;
@@ -200,27 +215,25 @@
 <div class="contenedor">
     <div class="header-bolivia">
         <h1>🎮 Juega y aprende con Prof. Jhonny Chipana Choque 🎓</h1>
+        <div class="frase-poderosa">✨ "Nunca te rindas persiste hasta el final" ✨</div>
         <p style="font-size:1.2rem;">🇧🇴 Conociendo Bolivia y el mundo - Contenido escolar primaria 🇧🇴🌍</p>
     </div>
 
-    <!-- Pestañas principales -->
     <div class="tabs-materias" id="tabsContainer">
-        <button class="btn-tab activo" data-materia="matematica">📐 Matemáticas (100)</button>
-        <button class="btn-tab" data-materia="comunicacion">📖 Comunicación (100)</button>
-        <button class="btn-tab" data-materia="ciencias_naturales">🌿 Ciencias Naturales (50)</button>
-        <button class="btn-tab" data-materia="ciencias_sociales">🏛️ Ciencias Sociales (50)</button>
+        <button class="btn-tab activo" data-materia="matematica">📐 Matemáticas (25)</button>
+        <button class="btn-tab" data-materia="comunicacion">📖 Comunicación (25)</button>
+        <button class="btn-tab" data-materia="ciencias_naturales">🌿 Ciencias Naturales (25)</button>
+        <button class="btn-tab" data-materia="ciencias_sociales">🏛️ Ciencias Sociales (25)</button>
         <button class="btn-tab" data-materia="cultura_mundial">🌍 Cultura General del Mundo</button>
     </div>
 
-    <!-- Subpestañas (solo se muestran en Cultura Mundial) -->
     <div id="subTabsContainer" class="sub-tabs" style="display: none;">
-        <button class="btn-subtab activo-sub" data-sub="ciencia">🔬 Ciencia (10)</button>
-        <button class="btn-subtab" data-sub="tecnologia">💻 Tecnología (10)</button>
-        <button class="btn-subtab" data-sub="literatura">📚 Literatura (10)</button>
-        <button class="btn-subtab" data-sub="deportes">⚽ Deportes (10)</button>
+        <button class="btn-subtab activo-sub" data-sub="ciencia">🔬 Ciencia (35)</button>
+        <button class="btn-subtab" data-sub="tecnologia">💻 Tecnología (35)</button>
+        <button class="btn-subtab" data-sub="literatura">📚 Literatura (35)</button>
+        <button class="btn-subtab" data-sub="deportes">⚽ Deportes (30)</button>
     </div>
 
-    <!-- Zona del juego -->
     <div class="panel-juego" id="gamePanel">
         <div class="pregunta" id="preguntaTexto">Cargando preguntas...</div>
         <div class="opciones" id="opcionesContainer"></div>
@@ -230,173 +243,349 @@
         </div>
         <div id="mensajeFinal" class="mensaje-final"></div>
     </div>
-    <footer>✨ Preguntas basadas en currículo boliviano y cultura mundial - Primaria ✨</footer>
+    <footer>✨ "Nunca te rindas persiste hasta el final" - Prof. Jhonny Chipana Choque ✨</footer>
 </div>
 
 <script>
-    // ============================================================
-    // MATERIAS DE BOLIVIA (ejemplos, puedes expandir hasta 100)
-    // ============================================================
-    const pregMatematica = [
-        { texto: "Si tienes 14 bolivianos y encuentras 8 más, ¿cuántos bolivianos tienes?", opciones: ["18", "22", "20", "24"], correcta: 1 },
-        { texto: "¿Cuántos minutos hay en 2 horas?", opciones: ["60", "90", "120", "150"], correcta: 2 },
-        { texto: "La mitad de 50 es:", opciones: ["20", "25", "30", "35"], correcta: 1 },
-        { texto: "Un lápiz cuesta Bs 3. ¿Cuánto cuestan 5 lápices?", opciones: ["12 Bs", "15 Bs", "18 Bs", "20 Bs"], correcta: 1 },
-        { texto: "¿Qué número sigue en la serie: 2, 4, 6, 8, _?", opciones: ["9", "10", "11", "12"], correcta: 1 }
-    ];
+// ================================================
+// MATEMÁTICAS - 25 preguntas
+// ================================================
+const pregMatematica = [
+    { texto: "Si tienes 15 bolivianos y encuentras 12 más, ¿cuántos bolivianos tienes?", opciones: ["25", "27", "28", "30"], correcta: 1 },
+    { texto: "¿Cuántos minutos hay en 3 horas?", opciones: ["120", "150", "180", "200"], correcta: 2 },
+    { texto: "La cuarta parte de 100 es:", opciones: ["20", "25", "30", "35"], correcta: 1 },
+    { texto: "Un cuaderno cuesta Bs 5. ¿Cuánto cuestan 7 cuadernos?", opciones: ["30 Bs", "35 Bs", "40 Bs", "45 Bs"], correcta: 1 },
+    { texto: "¿Qué número sigue en la serie: 3, 6, 9, 12, _?", opciones: ["13", "14", "15", "16"], correcta: 2 },
+    { texto: "¿Cuánto es 8 × 7?", opciones: ["48", "54", "56", "64"], correcta: 2 },
+    { texto: "Si repartes 24 caramelos entre 4 niños, ¿cuántos recibe cada uno?", opciones: ["4", "5", "6", "7"], correcta: 2 },
+    { texto: "¿Cuál es el resultado de 144 ÷ 12?", opciones: ["10", "11", "12", "13"], correcta: 2 },
+    { texto: "¿Cuántos días tiene una semana?", opciones: ["5", "6", "7", "8"], correcta: 2 },
+    { texto: "¿Cuántas esquinas tiene un cuadrado?", opciones: ["3", "4", "5", "6"], correcta: 1 },
+    { texto: "Si un libro tiene 250 páginas y lees 50, ¿cuántas te faltan?", opciones: ["150", "175", "200", "225"], correcta: 2 },
+    { texto: "¿Cuánto es 9 × 9?", opciones: ["72", "81", "90", "99"], correcta: 1 },
+    { texto: "El doble de 45 es:", opciones: ["80", "85", "90", "95"], correcta: 2 },
+    { texto: "¿Cuántos meses tiene un año?", opciones: ["10", "11", "12", "13"], correcta: 2 },
+    { texto: "Si ahorras Bs 10 cada semana, ¿cuánto ahorras en 4 semanas?", opciones: ["30 Bs", "40 Bs", "50 Bs", "60 Bs"], correcta: 1 },
+    { texto: "¿Cuánto es 15 + 22 + 8?", opciones: ["40", "42", "45", "48"], correcta: 2 },
+    { texto: "La mitad de 120 es:", opciones: ["50", "55", "60", "65"], correcta: 2 },
+    { texto: "¿Qué número es mayor: 3/4 o 2/3?", opciones: ["3/4", "2/3", "Son iguales", "No se puede"], correcta: 0 },
+    { texto: "¿Cuántos centímetros hay en 2 metros?", opciones: ["100", "150", "200", "250"], correcta: 2 },
+    { texto: "Si una docena de huevos cuesta Bs 12, ¿cuánto cuesta un huevo?", opciones: ["Bs 0.50", "Bs 1", "Bs 1.50", "Bs 2"], correcta: 1 },
+    { texto: "¿Cuánto es 7 × 8?", opciones: ["48", "54", "56", "64"], correcta: 2 },
+    { texto: "¿Cuál es el perímetro de un cuadrado de lado 5 cm?", opciones: ["15 cm", "20 cm", "25 cm", "30 cm"], correcta: 1 },
+    { texto: "¿Cuánto es 100 - 37?", opciones: ["53", "63", "73", "83"], correcta: 1 },
+    { texto: "Si 3 × X = 27, ¿cuánto vale X?", opciones: ["7", "8", "9", "10"], correcta: 2 },
+    { texto: "¿Cuántas horas hay en 2 días?", opciones: ["24", "36", "48", "60"], correcta: 2 }
+];
 
-    const pregComunicacion = [
-        { texto: "¿Qué tipo de palabra es 'Bolivia'?", opciones: ["Sustantivo propio", "Adjetivo", "Verbo", "Artículo"], correcta: 0 },
-        { texto: "Sinónimo de 'alegre'", opciones: ["Triste", "Contento", "Enojado", "Cansado"], correcta: 1 },
-        { texto: "¿Cuál es el plural de 'flor'?", opciones: ["flores", "floris", "floras", "florer"], correcta: 0 },
-        { texto: "¿Qué oración está bien escrita?", opciones: ["Yo juejo", "Yo juego", "Yo juega", "Yo jueguo"], correcta: 1 },
-        { texto: "La sílaba tónica de 'Mochila'", opciones: ["Mo", "chi", "la"], correcta: 1 }
-    ];
+// ================================================
+// COMUNICACIÓN - 25 preguntas
+// ================================================
+const pregComunicacion = [
+    { texto: "¿Qué tipo de palabra es 'Bolivia'?", opciones: ["Sustantivo propio", "Adjetivo", "Verbo", "Artículo"], correcta: 0 },
+    { texto: "Sinónimo de 'alegre'", opciones: ["Triste", "Contento", "Enojado", "Cansado"], correcta: 1 },
+    { texto: "¿Cuál es el plural de 'flor'?", opciones: ["flores", "floris", "floras", "florer"], correcta: 0 },
+    { texto: "¿Qué oración está bien escrita?", opciones: ["Yo juejo", "Yo juego", "Yo juega", "Yo jueguo"], correcta: 1 },
+    { texto: "La sílaba tónica de 'Mochila'", opciones: ["Mo", "chi", "la"], correcta: 1 },
+    { texto: "Antónimo de 'grande'", opciones: ["Enorme", "Pequeño", "Gigante", "Alto"], correcta: 1 },
+    { texto: "¿Qué tipo de texto cuenta una historia?", opciones: ["Instructivo", "Narrativo", "Expositivo", "Argumentativo"], correcta: 1 },
+    { texto: "¿Cuál es el sujeto en: 'El niño juega feliz'?", opciones: ["juega", "feliz", "El niño", "El niño juega"], correcta: 2 },
+    { texto: "¿Cuál es el verbo en: 'María canta bonito'?", opciones: ["María", "canta", "bonito", "María canta"], correcta: 1 },
+    { texto: "¿Cómo se llama el signo que indica emoción (¡!)?", opciones: ["Interrogación", "Exclamación", "Punto", "Coma"], correcta: 1 },
+    { texto: "Palabra aguda: ¿cuál lleva tilde?", opciones: ["casa", "arbol", "corazón", "mesa"], correcta: 2 },
+    { texto: "¿Cuál es el diminutivo de 'perro'?", opciones: ["perrazo", "perrito", "perrote", "perrón"], correcta: 1 },
+    { texto: "¿Qué palabra está mal escrita?", opciones: ["Bicicleta", "Vivir", "Bolibia", "Casa"], correcta: 2 },
+    { texto: "¿Cómo se llaman las palabras que significan lo contrario?", opciones: ["Sinónimos", "Antónimos", "Homófonos", "Parónimos"], correcta: 1 },
+    { texto: "¿Qué tipo de cuento es 'Caperucita Roja'?", opciones: ["Fábula", "Leyenda", "Cuento de hadas", "Mito"], correcta: 2 },
+    { texto: "¿Cuál es el artículo determinado masculino?", opciones: ["la", "las", "el", "los"], correcta: 2 },
+    { texto: "Señala la palabra esdrújula", opciones: ["árbol", "cámara", "joven", "cantar"], correcta: 1 },
+    { texto: "¿Cuál es el propósito de un instructivo?", opciones: ["Contar historia", "Explicar cómo hacer algo", "Describir un lugar", "Opinar"], correcta: 1 },
+    { texto: "¿Qué significa la sigla 'TIC'?", opciones: ["Tecnología Información", "Tecnologías de Información", "Tecnologías de la Información", "Tiempo Informático"], correcta: 2 },
+    { texto: "El punto y seguido se usa para:", opciones: ["Terminar un párrafo", "Separar oraciones dentro del mismo párrafo", "Finalizar un texto", "Indicar duda"], correcta: 1 },
+    { texto: "¿Cuál es el plural de 'lápiz'?", opciones: ["lápices", "lapiz", "lapices", "lápizez"], correcta: 0 },
+    { texto: "¿Qué clase de palabra es 'rápidamente'?", opciones: ["Adjetivo", "Adverbio", "Sustantivo", "Verbo"], correcta: 1 },
+    { texto: "¿Qué recurso literario es 'Tus ojos son dos luceros'?", opciones: ["Metáfora", "Símil", "Hipérbole", "Personificación"], correcta: 0 },
+    { texto: "¿Cuál es la letra que suena como 'uve'?", opciones: ["B", "V", "W", "U"], correcta: 1 },
+    { texto: "¿Qué signo se usa para preguntar?", opciones: ["¡!", "¿?", ".", ","], correcta: 1 }
+];
 
-    const pregCienciasNaturales = [
-        { texto: "¿Cuál es el lago navegable más alto del mundo, ubicado en Bolivia?", opciones: ["Titicaca", "Poopó", "Uru Uru", "Rogagua"], correcta: 0 },
-        { texto: "Animal típico de la cordillera de los Andes en Bolivia", opciones: ["Jaguar", "Llama", "Cóndor", "Vicuña"], correcta: 1 },
-        { texto: "¿Qué recurso natural es muy importante en Potosí?", opciones: ["Estaño", "Plata", "Litio", "Oro"], correcta: 1 }
-    ];
+// ================================================
+// CIENCIAS NATURALES BOLIVIA - 25 preguntas
+// ================================================
+const pregCienciasNaturales = [
+    { texto: "¿Cuál es el lago navegable más alto del mundo, ubicado en Bolivia?", opciones: ["Titicaca", "Poopó", "Uru Uru", "Rogagua"], correcta: 0 },
+    { texto: "Animal típico de la cordillera de los Andes en Bolivia", opciones: ["Jaguar", "Llama", "Cóndor", "Vicuña"], correcta: 1 },
+    { texto: "¿Qué recurso natural es muy importante en Potosí?", opciones: ["Estaño", "Plata", "Litio", "Oro"], correcta: 1 },
+    { texto: "¿Cuál es el salar más grande del mundo, ubicado en Bolivia?", opciones: ["Salar de Atacama", "Salar de Uyuni", "Salar de Coipasa", "Salar de Hombre Muerto"], correcta: 1 },
+    { texto: "¿Qué ave es símbolo de los Andes bolivianos?", opciones: ["Águila", "Cóndor", "Halión", "Colibrí"], correcta: 1 },
+    { texto: "¿Qué departamento boliviano tiene la mayor biodiversidad?", opciones: ["La Paz", "Santa Cruz", "Beni", "Pando"], correcta: 1 },
+    { texto: "¿Qué planta es usada para la hoja de coca tradicional?", opciones: ["Coca", "Tabaco", "Café", "Cacao"], correcta: 0 },
+    { texto: "¿Qué animal es característico de la Amazonía boliviana?", opciones: ["Pingüino", "Delfín rosado", "Oso polar", "Foca"], correcta: 1 },
+    { texto: "¿Qué parque nacional boliviano protege el Pantanal?", opciones: ["Madidi", "Kaa-Iya", "Sajama", "Tunari"], correcta: 1 },
+    { texto: "¿Cuál es el pico más alto de Bolivia?", opciones: ["Illimani", "Sajama", "Huayna Potosí", "Illampu"], correcta: 1 },
+    { texto: "¿Qué fruta es originaria de los Yungas bolivianos?", opciones: ["Manzana", "Plátano", "Coca", "Cítricos"], correcta: 1 },
+    { texto: "¿Cuál es el río más importante de Bolivia?", opciones: ["Amazonas", "Beni", "Mamoré", "Madre de Dios"], correcta: 2 },
+    { texto: "¿Qué clima predomina en el altiplano boliviano?", opciones: ["Tropical", "Frío de montaña", "Desértico", "Templado"], correcta: 1 },
+    { texto: "¿Qué animal andino produce lana muy fina?", opciones: ["Llama", "Alpaca", "Vicuña", "Guanaco"], correcta: 2 },
+    { texto: "¿Qué árbol es típico de la región chaqueña?", opciones: ["Cedro", "Algarrobo", "Roble", "Pino"], correcta: 1 },
+    { texto: "¿Cuál es el principal cultivo del departamento de Cochabamba?", opciones: ["Soja", "Maíz", "Trigo", "Arroz"], correcta: 1 },
+    { texto: "¿Qué especie marina habita el Lago Titicaca?", opciones: ["Trucha", "Carachi", "Pejerrey", "Sábalo"], correcta: 1 },
+    { texto: "¿Qué fenómeno natural es común en el altiplano?", opciones: ["Huracanes", "Inundaciones", "Heladas", "Tsunamis"], correcta: 2 },
+    { texto: "¿Qué mineral es famoso en Cerro Rico de Potosí?", opciones: ["Oro", "Plata", "Cobre", "Zinc"], correcta: 1 },
+    { texto: "¿Cuál es el felino más grande de Bolivia?", opciones: ["Gato montés", "Jaguar", "Puma", "Ocelote"], correcta: 1 },
+    { texto: "¿Qué región boliviana es conocida por sus valles?", opciones: ["Altiplano", "Yungas", "Chaco", "Llanos"], correcta: 1 },
+    { texto: "¿Qué reserva protege al oso jucumari?", opciones: ["Carrasco", "Amboró", "Madidi", "Eduardo Abaroa"], correcta: 2 },
+    { texto: "¿Qué cultivo es base de la alimentación andina?", opciones: ["Arroz", "Papa", "Trigo", "Quinua"], correcta: 1 },
+    { texto: "¿Qué laguna es famosa por sus aguas rojas en Bolivia?", opciones: ["Laguna Colorada", "Laguna Verde", "Laguna Blanca", "Laguna Celeste"], correcta: 0 },
+    { texto: "¿Qué serpiente peligrosa vive en la Amazonía boliviana?", opciones: ["Víbora", "Anaconda", "Coral", "Boa"], correcta: 1 }
+];
 
-    const pregCienciasSociales = [
-        { texto: "¿En qué año Bolivia declaró su independencia?", opciones: ["1809", "1825", "1810", "1839"], correcta: 1 },
-        { texto: "Héroe de la Guerra del Pacífico, llamado 'El Mariscal'", opciones: ["Simón Bolívar", "Andrés de Santa Cruz", "Eduardo Abaroa", "José Ballivián"], correcta: 2 },
-        { texto: "Departamento donde se encuentra el Salar de Uyuni", opciones: ["Oruro", "Potosí", "La Paz", "Cochabamba"], correcta: 1 }
-    ];
+// ================================================
+// CIENCIAS SOCIALES BOLIVIA - 25 preguntas
+// ================================================
+const pregCienciasSociales = [
+    { texto: "¿En qué año Bolivia declaró su independencia?", opciones: ["1809", "1825", "1810", "1839"], correcta: 1 },
+    { texto: "Héroe de la Guerra del Pacífico, llamado 'El Mariscal'", opciones: ["Simón Bolívar", "Andrés de Santa Cruz", "Eduardo Abaroa", "José Ballivián"], correcta: 2 },
+    { texto: "Departamento donde se encuentra el Salar de Uyuni", opciones: ["Oruro", "Potosí", "La Paz", "Cochabamba"], correcta: 1 },
+    { texto: "¿Quién fue el primer presidente de Bolivia?", opciones: ["Simón Bolívar", "Antonio José de Sucre", "Andrés de Santa Cruz", "José María Pérez"], correcta: 1 },
+    { texto: "¿Cuál es la capital de Bolivia?", opciones: ["La Paz", "Sucre", "Cochabamba", "Santa Cruz"], correcta: 1 },
+    { texto: "¿En qué guerra Bolivia perdió su acceso al mar?", opciones: ["Guerra del Chaco", "Guerra del Pacífico", "Guerra de Independencia", "Guerra Federal"], correcta: 1 },
+    { texto: "¿Qué líder indígena luchó contra los españoles en el siglo XVIII?", opciones: ["Túpac Katari", "Tupac Amaru", "Manko Inka", "Huayna Cápac"], correcta: 0 },
+    { texto: "¿Qué departamento es conocido por su carnaval?", opciones: ["La Paz", "Oruro", "Potosí", "Tarija"], correcta: 1 },
+    { texto: "¿Cuál es la danza típica de la Diablada?", opciones: ["Caporales", "Morenada", "Diablada", "Tinku"], correcta: 2 },
+    { texto: "¿Qué caudillo boliviano luchó en la Guerra Federal?", opciones: ["José Manuel Pando", "Ismael Montes", "Mariano Melgarejo", "Hernando Siles"], correcta: 0 },
+    { texto: "¿En qué año se fundó la República de Bolivia?", opciones: ["1825", "1839", "1809", "1826"], correcta: 0 },
+    { texto: "¿Qué festival es patrimonio cultural de la humanidad en Oruro?", opciones: ["Carnaval de Oruro", "Fiesta del Gran Poder", "Entrada Universitaria", "Alasita"], correcta: 0 },
+    { texto: "¿Qué héroe boliviano participó en la Batalla de Junín?", opciones: ["Sucre", "Bolívar", "José Miguel Lanza", "Andrés de Santa Cruz"], correcta: 2 },
+    { texto: "¿Cuál es la moneda de Bolivia?", opciones: ["Peso", "Dólar", "Boliviano", "Sol"], correcta: 2 },
+    { texto: "¿Qué departamento produce más soya?", opciones: ["Santa Cruz", "Beni", "Pando", "Tarija"], correcta: 0 },
+    { texto: "¿Quién escribió el Himno Nacional de Bolivia?", opciones: ["José Ignacio de Sanjinés", "Leopoldo Benedetto Vincenti", "Juan José Pérez", "Manuel Cabral"], correcta: 0 },
+    { texto: "¿Qué guerra enfrentó a Bolivia y Paraguay?", opciones: ["Guerra del Pacífico", "Guerra del Chaco", "Guerra de la Triple Alianza", "Guerra Federal"], correcta: 1 },
+    { texto: "¿Cuál es el plato típico de la región del Altiplano?", opciones: ["Pique macho", "Chairo", "Silpancho", "Majadito"], correcta: 1 },
+    { texto: "¿Cuál es el idioma oficial además del español?", opciones: ["Quechua", "Aymara", "Guaraní", "Todos los anteriores"], correcta: 3 },
+    { texto: "¿Qué símbolo patrio es la wiphala?", opciones: ["Bandera", "Escudo", "Himno", "Flor"], correcta: 0 },
+    { texto: "¿Quién fue Túpac Katari?", opciones: ["Poeta", "Líder indígena", "Presidente", "Militar"], correcta: 1 },
+    { texto: "¿Qué ciudad es conocida como la 'Ciudad Blanca'?", opciones: ["Sucre", "Potosí", "Cochabamba", "Tarija"], correcta: 0 },
+    { texto: "¿Cuándo se celebra el Día del Mar?", opciones: ["23 de marzo", "6 de agosto", "10 de noviembre", "1 de enero"], correcta: 0 },
+    { texto: "¿Qué cultivo es típico de los valles bolivianos?", opciones: ["Coca", "Maíz", "Arroz", "Algodón"], correcta: 1 },
+    { texto: "¿Qué deporte es el más popular en Bolivia?", opciones: ["Baloncesto", "Fútbol", "Tenis", "Voleibol"], correcta: 1 }
+];
 
-    // ============================================================
-    // CULTURA GENERAL DEL MUNDO - 10 preguntas por categoría
-    // ============================================================
-    const pregCiencia = [
-        { texto: "¿Cuál es el planeta más cercano al Sol?", opciones: ["Venus", "Marte", "Mercurio", "Tierra"], correcta: 2 },
-        { texto: "¿Qué órgano del cuerpo humano bombea la sangre?", opciones: ["Cerebro", "Pulmón", "Corazón", "Hígado"], correcta: 2 },
-        { texto: "¿Qué gas necesitan las plantas para hacer la fotosíntesis?", opciones: ["Oxígeno", "Nitrógeno", "Dióxido de carbono", "Hidrógeno"], correcta: 2 },
-        { texto: "¿Cómo se llama la fuerza que nos atrae hacia la Tierra?", opciones: ["Magnetismo", "Gravedad", "Electricidad", "Fricción"], correcta: 1 },
-        { texto: "¿Qué animal es conocido como el 'rey de la selva'?", opciones: ["Tigre", "Elefante", "León", "Jaguar"], correcta: 2 },
-        { texto: "¿Cuál es el hueso más largo del cuerpo humano?", opciones: ["Fémur", "Húmero", "Tibia", "Radio"], correcta: 0 },
-        { texto: "¿Qué parte de la planta absorbe agua y nutrientes?", opciones: ["Tallo", "Hoja", "Flor", "Raíz"], correcta: 3 },
-        { texto: "¿Cuál es el animal más rápido del mundo?", opciones: ["Guepardo", "León", "Águila", "Caballo"], correcta: 0 },
-        { texto: "¿Qué estrella es el centro de nuestro sistema solar?", opciones: ["Luna", "Sol", "Sirio", "Andrómeda"], correcta: 1 },
-        { texto: "¿Cuántos huesos tiene un adulto humano aproximadamente?", opciones: ["150", "206", "250", "300"], correcta: 1 }
-    ];
+// ================================================
+// CULTURA GENERAL - CIENCIA (35 preguntas)
+// ================================================
+const pregCiencia = [
+    { texto: "¿Cuál es el planeta más cercano al Sol?", opciones: ["Venus", "Marte", "Mercurio", "Tierra"], correcta: 2 },
+    { texto: "¿Qué órgano del cuerpo humano bombea la sangre?", opciones: ["Cerebro", "Pulmón", "Corazón", "Hígado"], correcta: 2 },
+    { texto: "¿Qué gas necesitan las plantas para la fotosíntesis?", opciones: ["Oxígeno", "Nitrógeno", "Dióxido de carbono", "Hidrógeno"], correcta: 2 },
+    { texto: "¿Cómo se llama la fuerza que nos atrae a la Tierra?", opciones: ["Magnetismo", "Gravedad", "Electricidad", "Fricción"], correcta: 1 },
+    { texto: "¿Qué animal es el 'rey de la selva'?", opciones: ["Tigre", "Elefante", "León", "Jaguar"], correcta: 2 },
+    { texto: "¿Cuál es el hueso más largo del cuerpo humano?", opciones: ["Fémur", "Húmero", "Tibia", "Radio"], correcta: 0 },
+    { texto: "¿Qué parte de la planta absorbe agua y nutrientes?", opciones: ["Tallo", "Hoja", "Flor", "Raíz"], correcta: 3 },
+    { texto: "¿Cuál es el animal más rápido del mundo?", opciones: ["Guepardo", "León", "Águila", "Caballo"], correcta: 0 },
+    { texto: "¿Qué estrella es el centro del sistema solar?", opciones: ["Luna", "Sol", "Sirio", "Andrómeda"], correcta: 1 },
+    { texto: "¿Cuántos huesos tiene un adulto?", opciones: ["150", "206", "250", "300"], correcta: 1 },
+    { texto: "¿Qué científico formuló la teoría de la relatividad?", opciones: ["Newton", "Einstein", "Galileo", "Tesla"], correcta: 1 },
+    { texto: "¿Qué molécula transporta oxígeno en la sangre?", opciones: ["Hemoglobina", "Glucosa", "Insulina", "Colágeno"], correcta: 0 },
+    { texto: "¿Cuál es el planeta más grande del sistema solar?", opciones: ["Saturno", "Júpiter", "Neptuno", "Urano"], correcta: 1 },
+    { texto: "¿Qué enfermedad causó una pandemia en 2020?", opciones: ["Ébola", "COVID-19", "Gripe A", "VIH"], correcta: 1 },
+    { texto: "¿Qué vitamina produce la piel con el sol?", opciones: ["Vitamina A", "Vitamina C", "Vitamina D", "Vitamina E"], correcta: 2 },
+    { texto: "¿Cuál es el océano más grande del mundo?", opciones: ["Atlántico", "Índico", "Pacífico", "Ártico"], correcta: 2 },
+    { texto: "¿Qué aparato usamos para medir la temperatura?", opciones: ["Barómetro", "Termómetro", "Velocímetro", "Cronómetro"], correcta: 1 },
+    { texto: "¿Cuál es el metal más ligero?", opciones: ["Hierro", "Cobre", "Aluminio", "Litio"], correcta: 3 },
+    { texto: "¿Qué significa ADN?", opciones: ["Ácido desoxirribonucleico", "Ácido ribonucleico", "Ácido nucleico", "Ácido graso"], correcta: 0 },
+    { texto: "¿Cuál es el planeta conocido como el 'gigante rojo'?", opciones: ["Marte", "Júpiter", "Saturno", "No es un planeta"], correcta: 3 },
+    { texto: "¿Qué instrumento estudia los astros?", opciones: ["Microscopio", "Telescopio", "Estetoscopio", "Periscopio"], correcta: 1 },
+    { texto: "¿Cuántos dientes tiene un adulto promedio?", opciones: ["28", "30", "32", "34"], correcta: 2 },
+    { texto: "¿Qué órgano filtra la sangre?", opciones: ["Corazón", "Pulmón", "Riñón", "Hígado"], correcta: 2 },
+    { texto: "¿Qué gas es el más abundante en la atmósfera?", opciones: ["Oxígeno", "Nitrógeno", "Dióxido carbono", "Argón"], correcta: 1 },
+    { texto: "¿Qué animal puede regenerar su cola?", opciones: ["Lagartija", "Serpiente", "Rana", "Tortuga"], correcta: 0 },
+    { texto: "¿Qué planta es carnívora?", opciones: ["Rosa", "Girasol", "Venus atrapamoscas", "Orquídea"], correcta: 2 },
+    { texto: "¿Qué fenómeno óptico produce el arcoíris?", opciones: ["Reflexión", "Refracción", "Difracción", "Polarización"], correcta: 1 },
+    { texto: "¿Cuál es el animal más longevo?", opciones: ["Tortuga", "Elefante", "Ballena", "Loro"], correcta: 0 },
+    { texto: "¿Qué parte del ojo nos da el color?", opciones: ["Pupila", "Iris", "Córnea", "Retina"], correcta: 1 },
+    { texto: "¿Qué científico descubrió la penicilina?", opciones: ["Fleming", "Pasteur", "Curie", "Koch"], correcta: 0 },
+    { texto: "¿Qué tipo de energía tiene un objeto en movimiento?", opciones: ["Potencial", "Cinética", "Térmica", "Química"], correcta: 1 },
+    { texto: "¿Qué continente tiene más países?", opciones: ["Asia", "África", "Europa", "América"], correcta: 1 },
+    { texto: "¿Cuál es el río más largo del mundo?", opciones: ["Amazonas", "Nilo", "Yangtsé", "Misisipi"], correcta: 0 },
+    { texto: "¿Qué metal es líquido a temperatura ambiente?", opciones: ["Mercurio", "Galio", "Bromo", "Cesio"], correcta: 0 },
+    { texto: "¿Qué capa de la atmósfera protege de rayos UV?", opciones: ["Troposfera", "Estratosfera", "Mesosfera", "Termosfera"], correcta: 1 }
+];
 
-    const pregTecnologia = [
-        { texto: "¿Qué empresa creó el sistema operativo Windows?", opciones: ["Apple", "Google", "Microsoft", "Linux"], correcta: 2 },
-        { texto: "¿Qué dispositivo se usa para imprimir documentos?", opciones: ["Monitor", "Teclado", "Impresora", "Ratón"], correcta: 2 },
-        { texto: "¿Qué significa 'WWW'?", opciones: ["World Web Wide", "Wide World Web", "World Wide Web", "Web World Wide"], correcta: 2 },
-        { texto: "¿Qué compañía fabrica los iPhone?", opciones: ["Samsung", "Xiaomi", "Apple", "Huawei"], correcta: 2 },
-        { texto: "¿Qué red social es conocida por sus tweets?", opciones: ["Facebook", "Instagram", "Twitter", "TikTok"], correcta: 2 },
-        { texto: "¿Qué parte de la computadora se considera el 'cerebro'?", opciones: ["RAM", "Disco duro", "CPU", "Fuente de poder"], correcta: 2 },
-        { texto: "¿Qué lenguaje de programación se usa para páginas web interactivas?", opciones: ["Python", "Java", "JavaScript", "C++"], correcta: 2 },
-        { texto: "¿Qué aplicación se usa para ver videos en línea?", opciones: ["Netflix", "YouTube", "Amazon Prime", "Disney+"], correcta: 1 },
-        { texto: "¿Qué dispositivo se usa para tomar fotos digitales?", opciones: ["Escáner", "Cámara digital", "Proyector", "Webcam"], correcta: 1 },
-        { texto: "¿Qué significa 'USB'?", opciones: ["Universal Serial Bus", "United Serial Bus", "Universal System Bus", "United System Bus"], correcta: 0 }
-    ];
+// ================================================
+// TECNOLOGÍA (35 preguntas)
+// ================================================
+const pregTecnologia = [
+    { texto: "¿Qué empresa creó Windows?", opciones: ["Apple", "Google", "Microsoft", "Linux"], correcta: 2 },
+    { texto: "¿Qué dispositivo se usa para imprimir?", opciones: ["Monitor", "Teclado", "Impresora", "Ratón"], correcta: 2 },
+    { texto: "¿Qué significa WWW?", opciones: ["World Web Wide", "Wide World Web", "World Wide Web", "Web World Wide"], correcta: 2 },
+    { texto: "¿Qué compañía fabrica iPhone?", opciones: ["Samsung", "Xiaomi", "Apple", "Huawei"], correcta: 2 },
+    { texto: "¿Qué red social es conocida por sus tweets?", opciones: ["Facebook", "Instagram", "Twitter", "TikTok"], correcta: 2 },
+    { texto: "¿Parte de la computadora considerada 'cerebro'?", opciones: ["RAM", "Disco duro", "CPU", "Fuente poder"], correcta: 2 },
+    { texto: "¿Lenguaje para páginas web interactivas?", opciones: ["Python", "Java", "JavaScript", "C++"], correcta: 2 },
+    { texto: "¿Qué app para ver videos en línea?", opciones: ["Netflix", "YouTube", "Prime", "Disney+"], correcta: 1 },
+    { texto: "¿Dispositivo para tomar fotos digitales?", opciones: ["Escáner", "Cámara digital", "Proyector", "Webcam"], correcta: 1 },
+    { texto: "¿Qué significa USB?", opciones: ["Universal Serial Bus", "United Serial Bus", "Universal System Bus", "United System Bus"], correcta: 0 },
+    { texto: "¿Qué empresa creó Android?", opciones: ["Apple", "Microsoft", "Google", "Samsung"], correcta: 2 },
+    { texto: "¿Qué es un algoritmo?", opciones: ["Virus", "Secuencia de pasos", "Hardware", "Red social"], correcta: 1 },
+    { texto: "¿Qué significa CPU?", opciones: ["Central Processing Unit", "Computer Personal Unit", "Central Program Unit", "Control Processing Unit"], correcta: 0 },
+    { texto: "¿Qué sistema operativo tiene la manzana?", opciones: ["Windows", "Linux", "macOS", "Android"], correcta: 2 },
+    { texto: "¿Qué red social tiene 'stories'?", opciones: ["WhatsApp", "Instagram", "Facebook", "Todas"], correcta: 3 },
+    { texto: "¿Qué significa 'email'?", opciones: ["Correo postal", "Correo electrónico", "Mensaje texto", "Llamada"], correcta: 1 },
+    { texto: "¿Qué compañía es dueña de YouTube?", opciones: ["Microsoft", "Amazon", "Google", "Apple"], correcta: 2 },
+    { texto: "¿Qué navegador tiene el logotipo de zorro?", opciones: ["Chrome", "Firefox", "Edge", "Safari"], correcta: 1 },
+    { texto: "¿Qué es la nube en tecnología?", opciones: ["Meteorología", "Almacenamiento en línea", "Red social", "Virus"], correcta: 1 },
+    { texto: "¿Qué dispositivo táctil es más común?", opciones: ["Mouse", "Teclado", "Pantalla táctil", "Impresora"], correcta: 2 },
+    { texto: "¿Qué significa IA?", opciones: ["Inteligencia Artificial", "Informática Avanzada", "Internet Abierta", "Imagen Aumentada"], correcta: 0 },
+    { texto: "¿Qué empresa creó el asistente Alexa?", opciones: ["Google", "Apple", "Amazon", "Microsoft"], correcta: 2 },
+    { texto: "¿Qué es un 'hashtag'?", opciones: ["Etiqueta #", "Usuario", "Contraseña", "Enlace"], correcta: 0 },
+    { texto: "¿Qué red social es para profesionales?", opciones: ["Facebook", "LinkedIn", "Twitter", "TikTok"], correcta: 1 },
+    { texto: "¿Qué famoso teléfono tiene el sistema iOS?", opciones: ["Galaxy", "Pixel", "iPhone", "Huawei"], correcta: 2 },
+    { texto: "¿Qué significa 'HTML'?", opciones: ["HyperText Markup Language", "High Tech Modern Language", "Hyperlink Text Markup", "Home Tool Markup"], correcta: 0 },
+    { texto: "¿Qué empresa tiene el asistente 'Google Assistant'?", opciones: ["Google", "Apple", "Amazon", "Microsoft"], correcta: 0 },
+    { texto: "¿Qué dispositivo se usa para jugar en una PC?", opciones: ["Teclado", "Mouse", "Control", "Todos"], correcta: 3 },
+    { texto: "¿Qué plataforma de streaming tiene 'Stranger Things'?", opciones: ["Netflix", "HBO", "Amazon", "Disney+"], correcta: 0 },
+    { texto: "¿Qué significa URL?", opciones: ["Dirección web", "Correo", "Usuario", "Contraseña"], correcta: 0 },
+    { texto: "¿Qué empresa fabrica los procesadores Ryzen?", opciones: ["Intel", "AMD", "NVIDIA", "Qualcomm"], correcta: 1 },
+    { texto: "¿Qué es un 'smartphone'?", opciones: ["Teléfono inteligente", "Computadora", "Tablet", "Reloj"], correcta: 0 },
+    { texto: "¿Qué red social es conocida por bailes cortos?", opciones: ["Instagram", "TikTok", "Snapchat", "Twitter"], correcta: 1 },
+    { texto: "¿Qué significa 'GPS'?", opciones: ["Sistema de posicionamiento global", "Google maps", "Guía de viaje", "Mapa"], correcta: 0 },
+    { texto: "¿Qué tipo de inteligencia usan los autos Tesla?", opciones: ["IA", "Robot", "Control remoto", "Manual"], correcta: 0 }
+];
 
-    const pregLiteratura = [
-        { texto: "¿Quién escribió 'El Quijote de la Mancha'?", opciones: ["Gabriel García Márquez", "Miguel de Cervantes", "Pablo Neruda", "Jorge Luis Borges"], correcta: 1 },
-        { texto: "¿Qué autor escribió 'Cien años de soledad'?", opciones: ["Mario Vargas Llosa", "Gabriel García Márquez", "Julio Cortázar", "Isabel Allende"], correcta: 1 },
-        { texto: "¿En qué libro aparece 'Sherlock Holmes'?", opciones: ["Moby Dick", "El retrato de Dorian Gray", "Estudio en escarlata", "Drácula"], correcta: 2 },
-        { texto: "¿Quién escribió 'La Divina Comedia'?", opciones: ["Dante Alighieri", "Petrarca", "Boccaccio", "Virgilio"], correcta: 0 },
-        { texto: "¿Cuál es el personaje principal de 'El Principito'?", opciones: ["Un zorro", "Un rey", "Un principito", "Un aviador"], correcta: 2 },
-        { texto: "¿Quién escribió 'Romeo y Julieta'?", opciones: ["Charles Dickens", "William Shakespeare", "Jane Austen", "Mark Twain"], correcta: 1 },
-        { texto: "¿Qué libro inicia con 'Llamadme Ismael'?", opciones: ["La Isla del Tesoro", "Moby Dick", "Veinte mil leguas de viaje submarino", "El viejo y el mar"], correcta: 1 },
-        { texto: "¿Quién escribió 'La Metamorfosis'?", opciones: ["Franz Kafka", "James Joyce", "Virginia Woolf", "Albert Camus"], correcta: 0 },
-        { texto: "¿Cuál es la casa editorial de Harry Potter?", opciones: ["Bloomsbury", "Scholastic", "Penguin", "HarperCollins"], correcta: 0 },
-        { texto: "¿Quién escribió 'Alicia en el país de las maravillas'?", opciones: ["Lewis Carroll", "J.R.R. Tolkien", "C.S. Lewis", "Roald Dahl"], correcta: 0 }
-    ];
+// ================================================
+// LITERATURA (35 preguntas)
+// ================================================
+const pregLiteratura = [
+    { texto: "¿Quién escribió 'El Quijote'?", opciones: ["García Márquez", "Cervantes", "Neruda", "Borges"], correcta: 1 },
+    { texto: "¿Quién escribió 'Cien años de soledad'?", opciones: ["Vargas Llosa", "García Márquez", "Cortázar", "Allende"], correcta: 1 },
+    { texto: "¿Libro donde aparece Sherlock Holmes?", opciones: ["Moby Dick", "Estudio en escarlata", "Dorian Gray", "Drácula"], correcta: 1 },
+    { texto: "¿Quién escribió 'La Divina Comedia'?", opciones: ["Dante", "Petrarca", "Boccaccio", "Virgilio"], correcta: 0 },
+    { texto: "Protagonista de 'El Principito'", opciones: ["Zorro", "Rey", "Principito", "Aviador"], correcta: 2 },
+    { texto: "¿Quién escribió 'Romeo y Julieta'?", opciones: ["Dickens", "Shakespeare", "Austen", "Twain"], correcta: 1 },
+    { texto: "Libro que empieza: 'Llamadme Ismael'", opciones: ["Isla Tesoro", "Moby Dick", "20 mil leguas", "El viejo y el mar"], correcta: 1 },
+    { texto: "¿Quién escribió 'La Metamorfosis'?", opciones: ["Kafka", "Joyce", "Woolf", "Camus"], correcta: 0 },
+    { texto: "¿Editorial de Harry Potter?", opciones: ["Bloomsbury", "Scholastic", "Penguin", "Harper"], correcta: 0 },
+    { texto: "¿Autor de 'Alicia en el País de las Maravillas'?", opciones: ["Lewis Carroll", "Tolkien", "Lewis", "Dahl"], correcta: 0 },
+    { texto: "¿Quién escribió '1984'?", opciones: ["Huxley", "Orwell", "Bradbury", "Asimov"], correcta: 1 },
+    { texto: "¿Autora de 'Frankenstein'?", opciones: ["Shelley", "Austen", "Bronte", "Christie"], correcta: 0 },
+    { texto: "¿Libro de Gabriel García Márquez?", opciones: ["La ciudad y los perros", "El amor en los tiempos del cólera", "Rayuela", "La casa de los espíritus"], correcta: 1 },
+    { texto: "¿Autor de 'La casa de Bernarda Alba'?", opciones: ["Lorca", "Alberti", "Cernuda", "Aleixandre"], correcta: 0 },
+    { texto: "¿Personaje de 'El viejo y el mar'?", opciones: ["Santiago", "Manolin", "Ambrosio", "Lucas"], correcta: 0 },
+    { texto: "¿Quién escribió 'El principito'?", opciones: ["Saint-Exupéry", "Dumas", "Verne", "Hugo"], correcta: 0 },
+    { texto: "¿Saga de J.K. Rowling?", opciones: ["Crepúsculo", "Narnia", "Harry Potter", "El señor de los anillos"], correcta: 2 },
+    { texto: "¿Autor de 'Rayuela'?", opciones: ["Cortázar", "Borges", "Rulfo", "Fuentes"], correcta: 0 },
+    { texto: "¿Novela de Isabel Allende?", opciones: ["Eva Luna", "Cien años", "Pedro Páramo", "La tía Julia"], correcta: 0 },
+    { texto: "¿Poeta chileno premio Nobel?", opciones: ["Neruda", "Mistral", "Huidobro", "De Rokha"], correcta: 0 },
+    { texto: "¿Autor de 'El hobbit'?", opciones: ["Tolkien", "Lewis", "Rowling", "Martin"], correcta: 0 },
+    { texto: "¿Novela de Mario Vargas Llosa?", opciones: ["La fiesta del chivo", "La casa verde", "Conversación en La Catedral", "Todas"], correcta: 3 },
+    { texto: "¿Autor de 'El lazarillo de Tormes'?", opciones: ["Anónimo", "Cervantes", "Quevedo", "Góngora"], correcta: 0 },
+    { texto: "¿Libro de Julio Verne?", opciones: ["La vuelta al mundo", "20 mil leguas", "Viaje centro Tierra", "Todas"], correcta: 3 },
+    { texto: "¿Quién escribió 'Hamlet'?", opciones: ["Shakespeare", "Marlowe", "Jonson", "Webster"], correcta: 0 },
+    { texto: "¿Autora de 'Orgullo y prejuicio'?", opciones: ["Austen", "Bronte", "Eliot", "Dickinson"], correcta: 0 },
+    { texto: "¿Novela de Ernest Hemingway?", opciones: ["Por quién doblan las campanas", "El viejo y el mar", "Adiós a las armas", "Todas"], correcta: 3 },
+    { texto: "¿Personaje principal de 'El Quijote'?", opciones: ["Sancho", "Quijote", "Dulcinea", "Rocinante"], correcta: 1 },
+    { texto: "¿Autor de 'La isla del tesoro'?", opciones: ["Stevenson", "Defoe", "Swift", "Verne"], correcta: 0 },
+    { texto: "¿Novela de Victor Hugo?", opciones: ["Los miserables", "Nuestra Señora de París", "El hombre que ríe", "Todas"], correcta: 3 },
+    { texto: "¿Escritor ruso de 'Crimen y castigo'?", opciones: ["Dostoievski", "Tolstoi", "Chéjov", "Gogol"], correcta: 0 },
+    { texto: "¿Poema épico de Homero?", opciones: ["Ilíada", "Odisea", "Ambas", "Eneida"], correcta: 2 },
+    { texto: "¿Autora de 'Matilda'?", opciones: ["Dahl", "Rowling", "Blake", "Montgomery"], correcta: 0 },
+    { texto: "¿Libro de Antoine de Saint-Exupéry?", opciones: ["Tierra de hombres", "Vuelo nocturno", "El principito", "Todas"], correcta: 3 },
+    { texto: "¿Personaje de 'La vuelta al mundo en 80 días'?", opciones: ["Fogg", "Nemo", "Grant", "Aronnax"], correcta: 0 }
+];
 
-    const pregDeportes = [
-        { texto: "¿Cada cuántos años se realizan los Juegos Olímpicos?", opciones: ["2 años", "3 años", "4 años", "5 años"], correcta: 2 },
-        { texto: "¿Qué país ganó el Mundial de Fútbol de 2018?", opciones: ["Alemania", "Brasil", "Francia", "Argentina"], correcta: 2 },
-        { texto: "¿Cuántos jugadores hay en un equipo de baloncesto en la cancha?", opciones: ["5", "6", "7", "8"], correcta: 0 },
-        { texto: "¿Quién es conocido como 'El Rey' del fútbol?", opciones: ["Maradona", "Pelé", "Messi", "Cristiano"], correcta: 1 },
-        { texto: "¿En qué deporte se usa un 'birdie'?", opciones: ["Tenis", "Bádminton", "Golf", "Béisbol"], correcta: 1 },
-        { texto: "¿Qué país tiene más Copas del Mundo de fútbol?", opciones: ["Argentina", "Alemania", "Italia", "Brasil"], correcta: 3 },
-        { texto: "¿Quién ganó el Balón de Oro 2022?", opciones: ["Mbappé", "Messi", "Benzema", "Haaland"], correcta: 1 },
-        { texto: "¿Qué deporte practica Novak Djokovic?", opciones: ["Fútbol", "Baloncesto", "Tenis", "Natación"], correcta: 2 },
-        { texto: "¿Cuánto dura un partido de fútbol profesional?", opciones: ["80 min", "90 min", "100 min", "70 min"], correcta: 1 },
-        { texto: "¿En qué deporte se anotan 'touchdowns'?", opciones: ["Rugby", "Fútbol americano", "Fútbol", "Hockey"], correcta: 1 }
-    ];
+// ================================================
+// DEPORTES (30 preguntas)
+// ================================================
+const pregDeportes = [
+    { texto: "¿Cada cuántos años son los Juegos Olímpicos?", opciones: ["2", "3", "4", "5"], correcta: 2 },
+    { texto: "¿País campeón mundial 2018?", opciones: ["Alemania", "Brasil", "Francia", "Argentina"], correcta: 2 },
+    { texto: "Jugadores de baloncesto en cancha", opciones: ["5", "6", "7", "8"], correcta: 0 },
+    { texto: "Conocido como 'El Rey' del fútbol", opciones: ["Maradona", "Pelé", "Messi", "Cristiano"], correcta: 1 },
+    { texto: "¿Deporte donde se usa 'birdie'?", opciones: ["Tenis", "Bádminton", "Golf", "Béisbol"], correcta: 1 },
+    { texto: "Más Copas Mundiales de fútbol", opciones: ["Argentina", "Alemania", "Italia", "Brasil"], correcta: 3 },
+    { texto: "Balón de Oro 2022", opciones: ["Mbappé", "Messi", "Benzema", "Haaland"], correcta: 1 },
+    { texto: "Deporte de Novak Djokovic", opciones: ["Fútbol", "Baloncesto", "Tenis", "Natación"], correcta: 2 },
+    { texto: "Duración partido fútbol profesional", opciones: ["80", "90", "100", "70"], correcta: 1 },
+    { texto: "Deporte con 'touchdowns'", opciones: ["Rugby", "Fútbol americano", "Fútbol", "Hockey"], correcta: 1 },
+    { texto: "Máximo goleador histórico de la selección boliviana", opciones: ["Moreno", "Etcheverry", "Sánchez", "Peña"], correcta: 0 },
+    { texto: "Color de la camiseta de la selección boliviana", opciones: ["Rojo", "Verde", "Blanco", "Celeste"], correcta: 1 },
+    { texto: "Estadio más grande de Bolivia", opciones: ["Hernando Siles", "Tahuichi", "Félix Capriles", "Jesús Bermúdez"], correcta: 0 },
+    { texto: "¿Quién ganó el Mundial 2022?", opciones: ["Francia", "Argentina", "Croacia", "Marruecos"], correcta: 1 },
+    { texto: "Récord de Copa América para Bolivia", opciones: ["Campeón 1963", "Subcampeón", "Tercero", "Cuartos"], correcta: 0 },
+    { texto: "Mejor tenista de la historia según muchos", opciones: ["Nadal", "Federer", "Djokovic", "Sampras"], correcta: 2 },
+    { texto: "País sede Juegos Olímpicos 2024", opciones: ["Londres", "París", "Tokio", "Los Ángeles"], correcta: 1 },
+    { texto: "Jugador de la NBA con más anillos", opciones: ["Jordan", "Russell", "LeBron", "Kareem"], correcta: 1 },
+    { texto: "Deporte que usa un disco llamado puck", opciones: ["Hockey hielo", "Hockey césped", "Curling", "Patinaje"], correcta: 0 },
+    { texto: "Ganador de la Champions 2023", opciones: ["Real Madrid", "Manchester City", "Bayern", "Inter"], correcta: 1 },
+    { texto: "Atleta con más oros olímpicos", opciones: ["Phelps", "Bolt", "Lewis", "Latynina"], correcta: 0 },
+    { texto: "¿Qué selección ganó la Copa América 2015?", opciones: ["Argentina", "Chile", "Uruguay", "Colombia"], correcta: 1 },
+    { texto: "¿Quién tiene el récord de más goles en un año?", opciones: ["Messi", "Cristiano", "Lewandowski", "Suárez"], correcta: 0 },
+    { texto: "Mejor jugador de la NBA en 2023", opciones: ["Jokic", "Curry", "Giannis", "Embiid"], correcta: 0 },
+    { texto: "País con más medallas olímpicas", opciones: ["China", "EE.UU.", "Rusia", "Alemania"], correcta: 1 },
+    { texto: "¿Quién ganó la Vuelta a España 2023?", opciones: ["Vingegaard", "Kuss", "Roglic", "Evenepoel"], correcta: 1 },
+    { texto: "Mejor nadador de la historia", opciones: ["Phelps", "Spitz", "Thorpe", "Biondi"], correcta: 0 },
+    { texto: "Boxeador con el récord de nocauts en peso pesado", opciones: ["Ali", "Frazier", "Foreman", "Louis"], correcta: 0 },
+    { texto: "Ganador del Tour de Francia 2023", opciones: ["Vingegaard", "Pogacar", "Thomas", "Yates"], correcta: 0 },
+    { texto: "País anfitrión del Mundial 2026", opciones: ["USA", "Canadá", "México", "Todos"], correcta: 3 }
+];
 
-    // Banco completo de preguntas por materia principal
-    const bancosPreguntas = {
-        matematica: pregMatematica,
-        comunicacion: pregComunicacion,
-        ciencias_naturales: pregCienciasNaturales,
-        ciencias_sociales: pregCienciasSociales,
-        cultura_mundial: {
-            ciencia: pregCiencia,
-            tecnologia: pregTecnologia,
-            literatura: pregLiteratura,
-            deportes: pregDeportes
-        }
-    };
-
-    // Estado del juego
-    let preguntasActuales = [];
-    let indiceActual = 0;
-    let puntaje = 0;
-    let juegoTerminado = false;
-    let materiaActiva = "matematica";
-    let subCategoriaActiva = "ciencia";
-
-    // DOM elements
-    const preguntaTextoDiv = document.getElementById('preguntaTexto');
-    const opcionesContainer = document.getElementById('opcionesContainer');
-    const puntajeDisplay = document.getElementById('puntajeDisplay');
-    const mensajeFinalDiv = document.getElementById('mensajeFinal');
-    const reiniciarBtn = document.getElementById('reiniciarBtn');
-    const subTabsContainer = document.getElementById('subTabsContainer');
-
-    function actualizarTextosBotones() {
-        const botones = document.querySelectorAll('.btn-tab');
-        if(botones[0]) botones[0].innerHTML = '📐 Matemáticas ('+ pregMatematica.length +')';
-        if(botones[1]) botones[1].innerHTML = '📖 Comunicación ('+ pregComunicacion.length +')';
-        if(botones[2]) botones[2].innerHTML = '🌿 Ciencias Naturales ('+ pregCienciasNaturales.length +')';
-        if(botones[3]) botones[3].innerHTML = '🏛️ Ciencias Sociales ('+ pregCienciasSociales.length +')';
-        if(botones[4]) botones[4].innerHTML = '🌍 Cultura General del Mundo';
+// ================================================
+// BANCOS DE PREGUNTAS
+// ================================================
+const bancosPreguntas = {
+    matematica: pregMatematica,
+    comunicacion: pregComunicacion,
+    ciencias_naturales: pregCienciasNaturales,
+    ciencias_sociales: pregCienciasSociales,
+    cultura_mundial: {
+        ciencia: pregCiencia,
+        tecnologia: pregTecnologia,
+        literatura: pregLiteratura,
+        deportes: pregDeportes
     }
+};
 
-    function cargarMateria(materiaId) {
-        materiaActiva = materiaId;
-        
-        if (materiaId === "cultura_mundial") {
-            subTabsContainer.style.display = "flex";
-            // Cargar subcategoría activa por defecto
-            cargarSubCategoria(subCategoriaActiva);
-        } else {
-            subTabsContainer.style.display = "none";
-            const banco = bancosPreguntas[materiaId];
-            if (!banco || banco.length === 0) {
-                preguntasActuales = [];
-                preguntaTextoDiv.innerText = "⚠️ Próximamente más preguntas. ¡Vuelve pronto!";
-                opcionesContainer.innerHTML = '';
-                puntajeDisplay.innerText = `Puntaje: 0 / 0`;
-                mensajeFinalDiv.innerText = "📚 Estamos agregando más contenido educativo.";
-                juegoTerminado = true;
-                return;
-            }
-            preguntasActuales = [...banco];
-            indiceActual = 0;
-            puntaje = 0;
-            juegoTerminado = false;
-            mensajeFinalDiv.innerHTML = '';
-            actualizarPregunta();
-            actualizarPuntaje();
-        }
-    }
+// ================================================
+// LÓGICA DEL JUEGO
+// ================================================
+let preguntasActuales = [];
+let indiceActual = 0;
+let puntaje = 0;
+let juegoTerminado = false;
+let materiaActiva = "matematica";
+let subCategoriaActiva = "ciencia";
 
-    function cargarSubCategoria(subId) {
-        subCategoriaActiva = subId;
-        const banco = bancosPreguntas.cultura_mundial[subId];
+const preguntaTextoDiv = document.getElementById('preguntaTexto');
+const opcionesContainer = document.getElementById('opcionesContainer');
+const puntajeDisplay = document.getElementById('puntajeDisplay');
+const mensajeFinalDiv = document.getElementById('mensajeFinal');
+const reiniciarBtn = document.getElementById('reiniciarBtn');
+const subTabsContainer = document.getElementById('subTabsContainer');
+
+function actualizarTextosBotones() {
+    const botones = document.querySelectorAll('.btn-tab');
+    if(botones[0]) botones[0].innerHTML = '📐 Matemáticas (25)';
+    if(botones[1]) botones[1].innerHTML = '📖 Comunicación (25)';
+    if(botones[2]) botones[2].innerHTML = '🌿 Ciencias Naturales (25)';
+    if(botones[3]) botones[3].innerHTML = '🏛️ Ciencias Sociales (25)';
+    if(botones[4]) botones[4].innerHTML = '🌍 Cultura General del Mundo';
+}
+
+function cargarMateria(materiaId) {
+    materiaActiva = materiaId;
+    if (materiaId === "cultura_mundial") {
+        subTabsContainer.style.display = "flex";
+        cargarSubCategoria(subCategoriaActiva);
+    } else {
+        subTabsContainer.style.display = "none";
+        const banco = bancosPreguntas[materiaId];
         if (!banco || banco.length === 0) {
             preguntasActuales = [];
-            preguntaTextoDiv.innerText = "⚠️ Próximamente más preguntas.";
+            preguntaTextoDiv.innerText = "⚠️ Próximamente más preguntas. ¡Vuelve pronto!";
             opcionesContainer.innerHTML = '';
             puntajeDisplay.innerText = `Puntaje: 0 / 0`;
-            mensajeFinalDiv.innerText = "📚 Estamos agregando más preguntas.";
+            mensajeFinalDiv.innerText = "📚 Estamos agregando más contenido educativo.";
             juegoTerminado = true;
             return;
         }
@@ -408,100 +597,118 @@
         actualizarPregunta();
         actualizarPuntaje();
     }
+}
 
-    function actualizarPregunta() {
-        if (juegoTerminado) return;
-        if (indiceActual >= preguntasActuales.length) {
-            juegoTerminado = true;
-            const porcentaje = (puntaje / preguntasActuales.length) * 100;
-            mensajeFinalDiv.innerHTML = `🏆 ¡Terminaste! Puntaje final: ${puntaje} / ${preguntasActuales.length} (${porcentaje}%) 🏆 <br> ¡Sigue aprendiendo!`;
-            preguntaTextoDiv.innerText = "🎉 ¡Has completado todas las preguntas! 🎉";
-            opcionesContainer.innerHTML = '';
-            return;
-        }
-        const pregunta = preguntasActuales[indiceActual];
-        preguntaTextoDiv.innerText = `${indiceActual+1}. ${pregunta.texto}`;
+function cargarSubCategoria(subId) {
+    subCategoriaActiva = subId;
+    const banco = bancosPreguntas.cultura_mundial[subId];
+    if (!banco || banco.length === 0) {
+        preguntasActuales = [];
+        preguntaTextoDiv.innerText = "⚠️ Próximamente más preguntas.";
         opcionesContainer.innerHTML = '';
-        pregunta.opciones.forEach((opc, idx) => {
-            const btnOpcion = document.createElement('div');
-            btnOpcion.classList.add('opcion');
-            btnOpcion.innerText = `${String.fromCharCode(65+idx)}. ${opc}`;
-            btnOpcion.dataset.idx = idx;
-            btnOpcion.addEventListener('click', () => responderPregunta(idx));
-            opcionesContainer.appendChild(btnOpcion);
-        });
+        puntajeDisplay.innerText = `Puntaje: 0 / 0`;
+        mensajeFinalDiv.innerText = "📚 Estamos agregando más preguntas.";
+        juegoTerminado = true;
+        return;
     }
+    preguntasActuales = [...banco];
+    indiceActual = 0;
+    puntaje = 0;
+    juegoTerminado = false;
+    mensajeFinalDiv.innerHTML = '';
+    actualizarPregunta();
+    actualizarPuntaje();
+}
 
-    function responderPregunta(seleccionIdx) {
-        if (juegoTerminado) return;
-        const pregunta = preguntasActuales[indiceActual];
-        const esCorrecta = (seleccionIdx === pregunta.correcta);
-        if (esCorrecta) {
-            puntaje++;
-            const mensajeFlash = document.createElement('div');
-            mensajeFlash.innerText = "✅ ¡Correcto!";
-            mensajeFlash.style.position = "fixed"; mensajeFlash.style.bottom = "20px"; mensajeFlash.style.left="20px";
-            mensajeFlash.style.backgroundColor="#2e7d32"; mensajeFlash.style.color="white"; mensajeFlash.style.padding="8px 16px"; mensajeFlash.style.borderRadius="30px";
-            document.body.appendChild(mensajeFlash);
-            setTimeout(() => mensajeFlash.remove(), 700);
-        } else {
-            const mensajeFlash = document.createElement('div');
-            mensajeFlash.innerText = `❌ Incorrecto. La respuesta era: ${pregunta.opciones[pregunta.correcta]}`;
-            mensajeFlash.style.position = "fixed"; mensajeFlash.style.bottom = "20px"; mensajeFlash.style.left="20px";
-            mensajeFlash.style.backgroundColor="#c62828"; mensajeFlash.style.color="white"; mensajeFlash.style.padding="8px 16px"; mensajeFlash.style.borderRadius="30px";
-            document.body.appendChild(mensajeFlash);
-            setTimeout(() => mensajeFlash.remove(), 1200);
-        }
-        indiceActual++;
-        actualizarPuntaje();
-        actualizarPregunta();
+function actualizarPregunta() {
+    if (juegoTerminado) return;
+    if (indiceActual >= preguntasActuales.length) {
+        juegoTerminado = true;
+        const porcentaje = (puntaje / preguntasActuales.length) * 100;
+        mensajeFinalDiv.innerHTML = `🏆 ¡Felicidades! Puntaje final: ${puntaje} / ${preguntasActuales.length} (${porcentaje}%) 🏆<br>✨ "Nunca te rindas persiste hasta el final" - ¡Lo lograste! ✨`;
+        preguntaTextoDiv.innerText = "🎉 ¡Has completado todas las preguntas! 🎉";
+        opcionesContainer.innerHTML = '';
+        return;
     }
+    const pregunta = preguntasActuales[indiceActual];
+    preguntaTextoDiv.innerText = `${indiceActual+1}. ${pregunta.texto}`;
+    opcionesContainer.innerHTML = '';
+    pregunta.opciones.forEach((opc, idx) => {
+        const btnOpcion = document.createElement('div');
+        btnOpcion.classList.add('opcion');
+        btnOpcion.innerText = `${String.fromCharCode(65+idx)}. ${opc}`;
+        btnOpcion.dataset.idx = idx;
+        btnOpcion.addEventListener('click', () => responderPregunta(idx));
+        opcionesContainer.appendChild(btnOpcion);
+    });
+}
 
-    function actualizarPuntaje() {
-        if(preguntasActuales.length > 0) {
-            puntajeDisplay.innerText = `Puntaje: ${puntaje} / ${preguntasActuales.length}`;
-        } else {
-            puntajeDisplay.innerText = `Puntaje: 0 / 0`;
-        }
+function responderPregunta(seleccionIdx) {
+    if (juegoTerminado) return;
+    const pregunta = preguntasActuales[indiceActual];
+    const esCorrecta = (seleccionIdx === pregunta.correcta);
+    if (esCorrecta) {
+        puntaje++;
+        const mensajeFlash = document.createElement('div');
+        mensajeFlash.innerText = "✅ ¡Correcto! ¡Sigue así!";
+        mensajeFlash.style.position = "fixed"; mensajeFlash.style.bottom = "20px"; mensajeFlash.style.left="20px";
+        mensajeFlash.style.backgroundColor="#2e7d32"; mensajeFlash.style.color="white"; mensajeFlash.style.padding="8px 16px"; mensajeFlash.style.borderRadius="30px";
+        document.body.appendChild(mensajeFlash);
+        setTimeout(() => mensajeFlash.remove(), 700);
+    } else {
+        const mensajeFlash = document.createElement('div');
+        mensajeFlash.innerText = `❌ Incorrecto. La respuesta era: ${pregunta.opciones[pregunta.correcta]}`;
+        mensajeFlash.style.position = "fixed"; mensajeFlash.style.bottom = "20px"; mensajeFlash.style.left="20px";
+        mensajeFlash.style.backgroundColor="#c62828"; mensajeFlash.style.color="white"; mensajeFlash.style.padding="8px 16px"; mensajeFlash.style.borderRadius="30px";
+        document.body.appendChild(mensajeFlash);
+        setTimeout(() => mensajeFlash.remove(), 1200);
     }
+    indiceActual++;
+    actualizarPuntaje();
+    actualizarPregunta();
+}
 
-    function reiniciarJuego() {
+function actualizarPuntaje() {
+    if(preguntasActuales.length > 0) {
+        puntajeDisplay.innerText = `Puntaje: ${puntaje} / ${preguntasActuales.length}`;
+    } else {
+        puntajeDisplay.innerText = `Puntaje: 0 / 0`;
+    }
+}
+
+function reiniciarJuego() {
+    if (materiaActiva === "cultura_mundial") {
+        cargarSubCategoria(subCategoriaActiva);
+    } else {
+        cargarMateria(materiaActiva);
+    }
+}
+
+document.querySelectorAll('.btn-tab').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        const materia = btn.getAttribute('data-materia');
+        document.querySelectorAll('.btn-tab').forEach(b => b.classList.remove('activo'));
+        btn.classList.add('activo');
+        cargarMateria(materia);
+    });
+});
+
+document.querySelectorAll('.btn-subtab').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        const sub = btn.getAttribute('data-sub');
+        document.querySelectorAll('.btn-subtab').forEach(b => b.classList.remove('activo-sub'));
+        btn.classList.add('activo-sub');
         if (materiaActiva === "cultura_mundial") {
-            cargarSubCategoria(subCategoriaActiva);
+            cargarSubCategoria(sub);
         } else {
-            cargarMateria(materiaActiva);
+            subCategoriaActiva = sub;
         }
-    }
-
-    // Manejo de pestañas principales
-    document.querySelectorAll('.btn-tab').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const materia = btn.getAttribute('data-materia');
-            document.querySelectorAll('.btn-tab').forEach(b => b.classList.remove('activo'));
-            btn.classList.add('activo');
-            cargarMateria(materia);
-        });
     });
+});
 
-    // Manejo de subpestañas de cultura mundial
-    document.querySelectorAll('.btn-subtab').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const sub = btn.getAttribute('data-sub');
-            document.querySelectorAll('.btn-subtab').forEach(b => b.classList.remove('activo-sub'));
-            btn.classList.add('activo-sub');
-            if (materiaActiva === "cultura_mundial") {
-                cargarSubCategoria(sub);
-            } else {
-                subCategoriaActiva = sub;
-            }
-        });
-    });
-
-    reiniciarBtn.addEventListener('click', reiniciarJuego);
-
-    // Inicialización
-    actualizarTextosBotones();
-    cargarMateria('matematica');
+reiniciarBtn.addEventListener('click', reiniciarJuego);
+actualizarTextosBotones();
+cargarMateria('matematica');
 </script>
 </body>
 </html>
