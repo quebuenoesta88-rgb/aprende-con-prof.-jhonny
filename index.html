@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal Educativo Mundo Niños - 300 Retos</title>
+    <title>Portal Educativo Mundo Niños - Juegos Interactivos</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
@@ -11,6 +11,8 @@
             --accent-orange: #f77f00;
             --game-bg: #e6f7ff;
             --correct-green: #7cb518;
+            --math-pink: #f72585;
+            --trivia-purple: #7209b7;
         }
 
         body {
@@ -26,256 +28,374 @@
 
         header {
             text-align: center;
-            padding: 30px 20px;
+            padding: 25px 20px;
         }
 
         h1 { color: var(--primary-blue); font-size: 2.8rem; margin: 0; }
         .subtitle { color: #00b4d8; font-size: 1.2rem; margin-top: 5px; font-weight: bold; }
 
-        /* Barra de Navegación */
+        /* Barra de Navegación Principal Simplificada */
         .nav-buttons {
             display: flex;
             gap: 12px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
+            margin-bottom: 25px;
             justify-content: center;
-            padding: 0 20px;
         }
 
-        .btn {
-            padding: 12px 24px;
+        .btn-main {
+            padding: 14px 35px;
             border-radius: 25px;
             border: none;
             color: white;
             font-weight: bold;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: transform 0.2s, box-shadow 0.2s;
+            font-size: 1.2rem;
+            background-color: var(--primary-blue);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
 
-        .btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-
-        .btn-materias { background-color: var(--accent-orange); }
-        .btn-juegos { background-color: #00b4d8; }
-        .btn-actividades { background-color: var(--correct-green); }
-        .btn-imagenes { background-color: #f72585; }
-        .btn-videos { background-color: #7209b7; }
-        .btn-especial { background-color: #03045e; border: 2px solid #deff9a; } /* JhonTeRetaEnMate */
-
-        /* Ventana del Juego Principal */
+        /* Ventana del Contenedor Principal de Juegos */
         .game-window {
             background: white;
             border-radius: 25px;
-            padding: 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            width: 90%;
-            max-width: 700px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            width: 92%;
+            max-width: 800px;
             text-align: center;
-            position: relative;
             border: 4px solid var(--primary-blue);
         }
 
-        .category-badge {
-            position: absolute;
-            top: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--accent-orange);
-            color: white;
-            padding: 8px 20px;
-            border-radius: 15px;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-
-        .question-box {
-            background-color: #f0fbff;
-            padding: 35px;
-            border-radius: 20px;
-            font-size: 1.8rem;
-            font-weight: bold;
+        .section-title {
             color: #023e8a;
-            margin-bottom: 30px;
-            min-height: 120px;
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 1.6rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 2px dashed #90e0ef;
+            gap: 10px;
+        }
+
+        /* Sub-botones para alternar entre los juegos internos */
+        .sub-nav {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .sub-btn {
+            padding: 10px 20px;
+            border-radius: 20px;
+            border: none;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+        }
+
+        .sub-btn:hover { transform: translateY(-2px); }
+        .btn-edukiz { background-color: #00b4d8; }
+        .btn-jhonreta { background-color: var(--math-pink); }
+        .btn-trivia { background-color: var(--trivia-purple); }
+
+        /* Selector de Materias dentro de la Trivia */
+        .trivia-menu {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .mat-btn {
+            padding: 15px;
+            border-radius: 15px;
+            border: 2px solid #e2e8f0;
+            background: #f8fafc;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            color: #334155;
+            transition: all 0.2s;
+        }
+        .mat-btn:hover, .mat-btn.active {
+            background-color: var(--trivia-purple);
+            color: white;
+            border-color: var(--trivia-purple);
+        }
+
+        /* Área de visualización de Contenidos del Juego */
+        .game-content-area {
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Bloque de Preguntas Estilo Trivia */
+        .question-box {
+            background-color: #f8fafc;
+            padding: 30px;
+            border-radius: 20px;
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: #1e293b;
+            margin-bottom: 25px;
+            border: 2px dashed #cbd5e1;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .options-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            gap: 15px;
         }
 
         .opt-btn {
             background-color: var(--primary-blue);
             color: white;
             border: none;
-            padding: 20px;
+            padding: 18px;
             border-radius: 15px;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: bold;
             cursor: pointer;
-            transition: background 0.3s;
+            transition: background 0.2s;
         }
-
         .opt-btn:hover { background-color: #0096c7; }
         .opt-btn.correct { background-color: var(--correct-green) !important; }
         .opt-btn.wrong { background-color: #ef4444 !important; }
 
-        .footer-stats {
-            margin-top: 30px;
+        /* Marcadores Inferiores Profesionales */
+        .stats-bar {
+            margin-top: 25px;
             display: flex;
             justify-content: space-around;
-            font-size: 1.2rem;
-            color: var(--primary-blue);
+            font-size: 1.1rem;
+            color: #475569;
             font-weight: bold;
-            border-top: 2px solid #e2e8f0;
-            padding-top: 20px;
+            border-top: 2px solid #f1f5f9;
+            padding-top: 15px;
         }
 
-        /* Estilo para el Modo Aritmética */
-        .math-mode-active { border-color: #f72585; }
-        .math-mode-active .question-box { background-color: #fff0f6; color: #f72585; }
+        /* Contenedor Iframe de Edukiz */
+        .iframe-container {
+            width: 100%;
+            height: 450px;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 3px solid #00b4d8;
+        }
+        iframe { width: 100%; height: 100%; border: none; }
+
+        .hidden { display: none !important; }
     </style>
 </head>
 <body>
 
     <header>
         <h1>🌍 Portal Educativo Mundo Niños</h1>
-        <p class="subtitle">¡Aprende, Juega y Supera el Reto de Jhonny!</p>
+        <p class="subtitle">¡Tu espacio interactivo para aprender, cantar y jugar!</p>
     </header>
 
     <div class="nav-buttons">
-        <button class="btn btn-materias" onclick="switchMode('general')"><i class="fa-solid fa-book"></i> Materias</button>
-        <button class="btn btn-juegos" onclick="switchMode('general')"><i class="fa-solid fa-gamepad"></i> Juegos</button>
-        <button class="btn btn-especial" onclick="switchMode('math')"><i class="fa-solid fa-calculator"></i> JhonTeRetaEnMate</button>
-        <button class="btn btn-actividades"><i class="fa-solid fa-pen-clip"></i> Actividades</button>
-        <button class="btn btn-videos"><i class="fa-solid fa-play"></i> Videos</button>
+        <button class="btn-main"><i class="fa-solid fa-gamepad"></i> Zona de Juegos Interactivos</button>
     </div>
 
-    <div class="game-window" id="gameWindow">
-        <div class="category-badge" id="categoryName">CULTURA GENERAL</div>
-        <h2 id="modeTitle" style="color: var(--primary-blue); margin-bottom: 20px;">Reto de Conocimiento</h2>
+    <div class="game-window">
         
-        <div class="question-box" id="displayBox">Cargando desafío...</div>
-        
-        <div class="options-grid" id="optionsGrid">
-            <button class="opt-btn" onclick="handleChoice(0)" id="o0">-</button>
-            <button class="opt-btn" onclick="handleChoice(1)" id="o1">-</button>
-            <button class="opt-btn" onclick="handleChoice(2)" id="o2">-</button>
-            <button class="opt-btn" onclick="handleChoice(3)" id="o3">-</button>
+        <div class="sub-nav">
+            <button class="sub-btn btn-edukiz" onclick="showGame('edukiz')"><i class="fa-solid fa-puzzle-piece"></i> Matemática (Edukiz)</button>
+            <button class="sub-btn btn-jhonreta" onclick="showGame('jhonreta')"><i class="fa-solid fa-bolt"></i> JhonTeRetaEnMate</button>
+            <button class="sub-btn btn-trivia" onclick="showGame('trivia')"><i class="fa-solid fa-trophy"></i> Trivia Mundo Niños</button>
         </div>
 
-        <div class="footer-stats">
-            <span>⭐ Puntos: <span id="score">0</span></span>
-            <span>🎯 Reto: <span id="progress">1</span> de 300</span>
+        <div class="game-content-area">
+
+            <div id="game-edukiz">
+                <h3 class="section-title" style="color: #00b4d8;"><i class="fa-solid fa-puzzle-piece"></i> Juego Edukiz Cargado En Vivo</h3>
+                <div class="iframe-container">
+                    <iframe src="https://quebuenoesta88-rgb.github.io/edukiz-main/"></iframe>
+                </div>
+            </div>
+
+            <div id="game-jhonreta" class="hidden">
+                <h3 class="section-title" style="color: var(--math-pink);"><i class="fa-solid fa-calculator"></i> Desafío de Cálculo Aritmético Veloz</h3>
+                <div class="question-box" id="mathQuestionBox">¿Listo para el reto aritmético?</div>
+                <div class="options-grid">
+                    <button class="opt-btn" id="mo0" onclick="checkMathAnswer(this)">-</button>
+                    <button class="opt-btn" id="mo1" onclick="checkMathAnswer(this)">-</button>
+                    <button class="opt-btn" id="mo2" onclick="checkMathAnswer(this)">-</button>
+                    <button class="opt-btn" id="mo3" onclick="checkMathAnswer(this)">-</button>
+                </div>
+                <div class="stats-bar">
+                    <span style="color: var(--math-pink);"><i class="fa-solid fa-star"></i> Puntos: <span id="mathScore">0</span></span>
+                    <span>Generador Infinito Aleatorio</span>
+                </div>
+            </div>
+
+            <div id="game-trivia" class="hidden">
+                <h3 class="section-title" style="color: var(--trivia-purple);"><i class="fa-solid fa-graduation-cap"></i> Gran Trivia de Conocimientos</h3>
+                
+                <div class="trivia-menu">
+                    <button class="mat-btn active" id="btn-cat-cultura" onclick="selectCategory('cultura')">🌍 Cultura General</button>
+                    <button class="mat-btn" id="btn-cat-ciencias" onclick="selectCategory('ciencias')">🌿 Ciencias Naturales</button>
+                    <button class="mat-btn" id="btn-cat-sociales" onclick="selectCategory('sociales')">🏛️ Ciencias Sociales</button>
+                </div>
+
+                <div class="question-box" id="triviaQuestionBox">Cargando pregunta de trivia...</div>
+                <div class="options-grid">
+                    <button class="opt-btn" id="to0" onclick="checkTriviaAnswer(this)">-</button>
+                    <button class="opt-btn" id="to1" onclick="checkTriviaAnswer(this)">-</button>
+                    <button class="opt-btn" id="to2" onclick="checkTriviaAnswer(this)">-</button>
+                    <button class="opt-btn" id="to3" onclick="checkTriviaAnswer(this)">-</button>
+                </div>
+                <div class="stats-bar">
+                    <span style="color: var(--trivia-purple);"><i class="fa-solid fa-circle-check"></i> Correctas: <span id="triviaScore">0</span></span>
+                    <span>Pregunta: <span id="triviaProgress">1</span> de 300</span>
+                </div>
+            </div>
+
         </div>
     </div>
 
     <script>
-        // Módulo 1: Banco de 300 Preguntas (Estructura expandible)
-        const allQuestions = [
-            // CULTURA GENERAL
-            { q: "¿Cuál es el río más largo del mundo?", a: ["Nilo", "Amazonas", "Danubio", "Río de la Plata"], c: "Amazonas", cat: "Geografía" },
-            { q: "¿Quién pintó la Mona Lisa?", a: ["Picasso", "Da Vinci", "Van Gogh", "Dalí"], c: "Da Vinci", cat: "Arte" },
-            { q: "¿Cuál es el planeta más grande?", a: ["Marte", "Saturno", "Júpiter", "Tierra"], c: "Júpiter", cat: "Ciencias" },
-            { q: "¿En qué país está la Torre Eiffel?", a: ["Italia", "España", "Francia", "Alemania"], c: "Francia", cat: "Cultura" },
-            { q: "¿Cuántos continentes existen?", a: ["5", "6", "7", "4"], c: "6", cat: "Geografía" },
-            // HISTORIA
-            { q: "¿En qué año se descubrió América?", a: ["1492", "1500", "1485", "1510"], c: "1492", cat: "Historia" },
-            { q: "¿Quién fue el libertador de América?", a: ["Napoleón", "Bolívar", "San Martín", "Sucre"], c: "Bolívar", cat: "Historia" },
-            // ... Aquí Jhonny puede seguir pegando hasta llegar a 300
-        ];
+        // --- BANCO DE PREGUNTAS (ESTRUCTURA HASTA 300 PREGUNTAS POR CATEGORÍA) ---
+        const triviaDatabase = {
+            cultura: [
+                { q: "¿Cuál es el océano más grande del planeta Tierra?", a: ["Océano Atlántico", "Océano Índico", "Océano Pacífico", "Océano Ártico"], c: "Océano Pacífico" },
+                { q: "¿Qué idioma es el más hablado en el mundo de forma nativa?", a: ["Inglés", "Chino Mandarín", "Español", "Hindi"], c: "Chino Mandarín" },
+                { q: "¿Cuál es el país más grande del mundo por extensión de tierra?", a: ["Canadá", "Rusia", "Estados Unidos", "China"], c: "Rusia" }
+                // Aquí añades correlativamente tus preguntas de Cultura General hasta las 300
+            ],
+            ciencias: [
+                { q: "¿Qué gas absorben las plantas del aire para realizar la fotosíntesis?", a: ["Oxígeno", "Dióxido de Carbono", "Nitrógeno", "Hidrógeno"], c: "Dióxido de Carbono" },
+                { q: "¿Cuál es el órgano más grande del cuerpo humano?", a: ["El hígado", "El corazón", "La piel", "Los pulmones"], c: "La piel" },
+                { q: "¿Cuál es el único mamífero capaz de volar de verdad?", a: ["El avestruz", "El murciélago", "La ardilla voladora", "El pingüino"], c: "El murciélago" }
+                // Aquí añades tus preguntas de Ciencias Naturales hasta las 300
+            ],
+            sociales: [
+                { q: "¿En qué continente se desarrolló la antigua civilización de los Faraones?", a: ["Asia", "América", "África", "Europa"], c: "África" },
+                { q: "¿Qué gran imperio precolombino habitó y se expandió por la cordillera de los Andes?", a: ["Imperio Azteca", "Imperio Inca", "Civilización Maya", "Los Chibchas"], c: "Imperio Inca" },
+                { q: "¿Cuál es la línea imaginaria horizontal que divide la Tierra en Hemisferio Norte y Sur?", a: ["Meridiano de Greenwich", "Trópico de Cáncer", "Línea del Ecuador", "Círculo Polar"], c: "Línea del Ecuador" }
+                // Aquí añades tus preguntas de Ciencias Sociales hasta las 300
+            ]
+        };
 
-        // Módulo 2: Motor Aritmético "JhonTeRetaEnMate"
-        let currentMode = 'general'; // 'general' o 'math'
-        let score = 0;
-        let currentIndex = 0;
-        let currentMathQuestion = {};
+        // --- SISTEMA DE NAVEGACIÓN ENTRE JUEGOS ---
+        function showGame(gameId) {
+            document.getElementById('game-edukiz').classList.add('hidden');
+            document.getElementById('game-jhonreta').classList.add('hidden');
+            document.getElementById('game-trivia').classList.add('hidden');
 
-        function switchMode(mode) {
-            currentMode = mode;
-            const window = document.getElementById('gameWindow');
-            if(mode === 'math') {
-                window.classList.add('math-mode-active');
-                document.getElementById('modeTitle').innerText = "⚡ MODO: JhonTeRetaEnMate";
-                document.getElementById('categoryName').innerText = "ARITMÉTICA PURA";
-                generateMath();
-            } else {
-                window.classList.remove('math-mode-active');
-                document.getElementById('modeTitle').innerText = "Reto de Conocimiento";
-                document.getElementById('categoryName').innerText = "CULTURA GENERAL";
-                loadGeneral();
-            }
+            document.getElementById(`game-${gameId}`).classList.remove('hidden');
+
+            if(gameId === 'jhonreta') { generateMathChallenge(); }
+            if(gameId === 'trivia') { loadTriviaQuestion(); }
         }
 
-        // Generador de preguntas de Aritmética (Atractivo e Infinito)
-        function generateMath() {
-            const ops = ['+', '-', 'x', '÷'];
-            const op = ops[Math.floor(Math.random() * ops.length)];
-            let n1, n2, ans;
+        // --- LÓGICA DEL JUEGO: JHON-TE-RETA-EN-MATE ---
+        let mathPoints = 0;
+        let currentMathAnswer = "";
 
-            if(op === '+') { n1 = Math.floor(Math.random()*50); n2 = Math.floor(Math.random()*50); ans = n1 + n2; }
-            if(op === '-') { n1 = Math.floor(Math.random()*50) + 20; n2 = Math.floor(Math.random()*n1); ans = n1 - n2; }
-            if(op === 'x') { n1 = Math.floor(Math.random()*12); n2 = Math.floor(Math.random()*12); ans = n1 * n2; }
-            if(op === '÷') { n2 = Math.floor(Math.random()*10) + 1; ans = Math.floor(Math.random()*10); n1 = n2 * ans; }
+        function generateMathChallenge() {
+            const operations = ['+', '-', 'x', '÷'];
+            const op = operations[Math.floor(Math.random() * operations.length)];
+            let num1, num2, answer;
 
-            currentMathQuestion = { q: `¿Cuánto es ${n1} ${op} ${n2}?`, c: ans.toString() };
-            
-            // Generar opciones falsas atractivas
-            let choices = [ans.toString()];
+            if(op === '+') { num1 = Math.floor(Math.random()*40)+10; num2 = Math.floor(Math.random()*40)+10; answer = num1 + num2; }
+            else if(op === '-') { num1 = Math.floor(Math.random()*50)+40; num2 = Math.floor(Math.random()*30)+5; answer = num1 - num2; }
+            else if(op === 'x') { num1 = Math.floor(Math.random()*11)+2; num2 = Math.floor(Math.random()*9)+2; answer = num1 * num2; }
+            else { num2 = Math.floor(Math.random()*9)+2; answer = Math.floor(Math.random()*10)+1; num1 = num2 * answer; }
+
+            currentMathAnswer = answer.toString();
+            document.getElementById('mathQuestionBox').innerText = `¿Cuánto es ${num1} ${op} ${num2}?`;
+
+            let choices = [currentMathAnswer];
             while(choices.length < 4) {
-                let fake = (ans + (Math.floor(Math.random()*10) - 5)).toString();
+                let fake = (answer + (Math.floor(Math.random()*12) - 6)).toString();
                 if(!choices.includes(fake)) choices.push(fake);
             }
             choices.sort(() => Math.random() - 0.5);
 
-            document.getElementById('displayBox').innerText = currentMathQuestion.q;
-            for(let i=0; i<4; i++) document.getElementById(`o${i}`).innerText = choices[i];
+            for(let i=0; i<4; i++) {
+                document.getElementById(`mo${i}`).innerText = choices[i];
+                document.getElementById(`mo${i}`).className = "opt-btn";
+            }
         }
 
-        function loadGeneral() {
-            if(currentIndex >= allQuestions.length) {
-                document.getElementById('displayBox').innerText = "🎉 ¡Eres un Genio! Completaste el portal.";
+        function checkMathAnswer(buttonElement) {
+            if(buttonElement.innerText === currentMathAnswer) {
+                buttonElement.classList.add('correct');
+                mathPoints += 10;
+                document.getElementById('mathScore').innerText = mathPoints;
+                setTimeout(generateMathChallenge, 600);
+            } else {
+                buttonElement.classList.add('wrong');
+                setTimeout(() => buttonElement.classList.remove('wrong'), 500);
+            }
+        }
+
+        // --- LÓGICA DEL JUEGO: TRIVIA MUNDO NIÑOS ---
+        let currentCategory = 'cultura';
+        let categoryIndices = { cultura: 0, ciencias: 0, sociales: 0 };
+        let triviaCorrectCount = 0;
+
+        function selectCategory(categoryName) {
+            currentCategory = categoryName;
+            document.getElementById('btn-cat-cultura').classList.remove('active');
+            document.getElementById('btn-cat-ciencias').classList.remove('active');
+            document.getElementById('btn-cat-sociales').classList.remove('active');
+            document.getElementById(`btn-cat-${categoryName}`).classList.add('active');
+            loadTriviaQuestion();
+        }
+
+        function loadTriviaQuestion() {
+            const index = categoryIndices[currentCategory];
+            const dataset = triviaDatabase[currentCategory];
+
+            if(index >= dataset.length) {
+                document.getElementById('triviaQuestionBox').innerText = "🎉 ¡Felicidades! Has respondido todos los desafíos disponibles de esta materia.";
+                for(let i=0; i<4; i++) document.getElementById(`to${i}`).classList.add('hidden');
                 return;
             }
-            const qObj = allQuestions[currentIndex];
-            document.getElementById('categoryName').innerText = qObj.cat;
-            document.getElementById('displayBox').innerText = qObj.q;
-            document.getElementById('progress').innerText = currentIndex + 1;
-            for(let i=0; i<4; i++) document.getElementById(`o${i}`).innerText = qObj.a[i];
-        }
 
-        function handleChoice(idx) {
-            const btn = document.getElementById(`o${idx}`);
-            const selected = btn.innerText;
-            const correct = (currentMode === 'general') ? allQuestions[currentIndex].c : currentMathQuestion.c;
+            for(let i=0; i<4; i++) document.getElementById(`to${i}`).classList.remove('hidden');
 
-            if(selected === correct) {
-                btn.classList.add('correct');
-                score += 10;
-                document.getElementById('score').innerText = score;
-                setTimeout(() => {
-                    btn.classList.remove('correct');
-                    if(currentMode === 'general') { currentIndex++; loadGeneral(); }
-                    else { generateMath(); }
-                }, 600);
-            } else {
-                btn.classList.add('wrong');
-                setTimeout(() => btn.classList.remove('wrong'), 600);
+            const qData = dataset[index];
+            document.getElementById('triviaQuestionBox').innerText = qData.q;
+            document.getElementById('triviaProgress').innerText = index + 1;
+
+            // Mostrar opciones ordenadas
+            for(let i=0; i<4; i++) {
+                document.getElementById(`to${i}`).innerText = qData.a[i];
+                document.getElementById(`to${i}`).className = "opt-btn";
             }
         }
 
-        window.onload = loadGeneral;
+        function checkTriviaAnswer(buttonElement) {
+            const index = categoryIndices[currentCategory];
+            const correctAnswer = triviaDatabase[currentCategory][index].c;
+
+            if(buttonElement.innerText === correctAnswer) {
+                buttonElement.classList.add('correct');
+                triviaCorrectCount++;
+                document.getElementById('triviaScore').innerText = triviaCorrectCount;
+                categoryIndices[currentCategory]++;
+                setTimeout(loadTriviaQuestion, 700);
+            } else {
+                buttonElement.classList.add('wrong');
+                setTimeout(() => buttonElement.classList.remove('wrong'), 500);
+            }
+        }
     </script>
 </body>
 </html>
-
-
-¡ Hola soy jhofesor Jhonny Chipana Choque realice este trabajo para que estudien, solo te digo nunca te rindas(abrazos).
