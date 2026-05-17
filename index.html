@@ -79,30 +79,35 @@
             gap: 10px;
         }
 
-        /* Sub-botones para alternar entre los juegos internos */
+        /* Sub-botones para alternar entre los dos modos de juego */
         .sub-nav {
             display: flex;
-            gap: 10px;
+            gap: 12px;
             justify-content: center;
             margin-bottom: 25px;
             flex-wrap: wrap;
         }
 
         .sub-btn {
-            padding: 10px 20px;
+            padding: 12px 24px;
             border-radius: 20px;
             border: none;
             color: white;
             font-weight: bold;
             cursor: pointer;
-            font-size: 0.95rem;
+            font-size: 1rem;
             transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .sub-btn:hover { transform: translateY(-2px); }
-        .btn-edukiz { background-color: #00b4d8; }
+        .sub-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
         .btn-jhonreta { background-color: var(--math-pink); }
         .btn-trivia { background-color: var(--trivia-purple); }
+        
+        .sub-btn.active-math { border: 3px solid #1e293b; font-size: 1.05rem; }
+        .sub-btn.active-trivia { border: 3px solid #1e293b; font-size: 1.05rem; }
 
         /* Selector de Materias dentro de la Trivia */
         .trivia-menu {
@@ -131,13 +136,13 @@
 
         /* Área de visualización de Contenidos del Juego */
         .game-content-area {
-            min-height: 400px;
+            min-height: 380px;
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
 
-        /* Bloque de Preguntas Estilo Trivia */
+        /* Bloque de Preguntas Estilo Trivia / Aritmética */
         .question-box {
             background-color: #f8fafc;
             padding: 30px;
@@ -186,16 +191,6 @@
             padding-top: 15px;
         }
 
-        /* Contenedor Iframe de Edukiz */
-        .iframe-container {
-            width: 100%;
-            height: 450px;
-            border-radius: 15px;
-            overflow: hidden;
-            border: 3px solid #00b4d8;
-        }
-        iframe { width: 100%; height: 100%; border: none; }
-
         .hidden { display: none !important; }
     </style>
 </head>
@@ -210,26 +205,18 @@
         <button class="btn-main"><i class="fa-solid fa-gamepad"></i> Zona de Juegos Interactivos</button>
     </div>
 
-    <div class="game-window">
+    <div class="game-window" id="mainGameWindow">
         
         <div class="sub-nav">
-            <button class="sub-btn btn-edukiz" onclick="showGame('edukiz')"><i class="fa-solid fa-puzzle-piece"></i> Matemática (Edukiz)</button>
-            <button class="sub-btn btn-jhonreta" onclick="showGame('jhonreta')"><i class="fa-solid fa-bolt"></i> JhonTeRetaEnMate</button>
-            <button class="sub-btn btn-trivia" onclick="showGame('trivia')"><i class="fa-solid fa-trophy"></i> Trivia Mundo Niños</button>
+            <button class="sub-btn btn-jhonreta" id="tab-jhonreta" onclick="showGame('jhonreta')"><i class="fa-solid fa-bolt"></i> JhonTeRetaEnMate</button>
+            <button class="sub-btn btn-trivia" id="tab-trivia" onclick="showGame('trivia')"><i class="fa-solid fa-trophy"></i> Trivia Mundo Niños</button>
         </div>
 
         <div class="game-content-area">
 
-            <div id="game-edukiz">
-                <h3 class="section-title" style="color: #00b4d8;"><i class="fa-solid fa-puzzle-piece"></i> Juego Edukiz Cargado En Vivo</h3>
-                <div class="iframe-container">
-                    <iframe src="https://quebuenoesta88-rgb.github.io/edukiz-main/"></iframe>
-                </div>
-            </div>
-
-            <div id="game-jhonreta" class="hidden">
+            <div id="game-jhonreta">
                 <h3 class="section-title" style="color: var(--math-pink);"><i class="fa-solid fa-calculator"></i> Desafío de Cálculo Aritmético Veloz</h3>
-                <div class="question-box" id="mathQuestionBox">¿Listo para el reto aritmético?</div>
+                <div class="question-box" id="mathQuestionBox">¿Cuánto es...?</div>
                 <div class="options-grid">
                     <button class="opt-btn" id="mo0" onclick="checkMathAnswer(this)">-</button>
                     <button class="opt-btn" id="mo1" onclick="checkMathAnswer(this)">-</button>
@@ -274,32 +261,44 @@
                 { q: "¿Cuál es el océano más grande del planeta Tierra?", a: ["Océano Atlántico", "Océano Índico", "Océano Pacífico", "Océano Ártico"], c: "Océano Pacífico" },
                 { q: "¿Qué idioma es el más hablado en el mundo de forma nativa?", a: ["Inglés", "Chino Mandarín", "Español", "Hindi"], c: "Chino Mandarín" },
                 { q: "¿Cuál es el país más grande del mundo por extensión de tierra?", a: ["Canadá", "Rusia", "Estados Unidos", "China"], c: "Rusia" }
-                // Aquí añades correlativamente tus preguntas de Cultura General hasta las 300
+                // Aquí añades correlativamente tus preguntas de Cultura General hasta llegar a 300
             ],
             ciencias: [
                 { q: "¿Qué gas absorben las plantas del aire para realizar la fotosíntesis?", a: ["Oxígeno", "Dióxido de Carbono", "Nitrógeno", "Hidrógeno"], c: "Dióxido de Carbono" },
                 { q: "¿Cuál es el órgano más grande del cuerpo humano?", a: ["El hígado", "El corazón", "La piel", "Los pulmones"], c: "La piel" },
                 { q: "¿Cuál es el único mamífero capaz de volar de verdad?", a: ["El avestruz", "El murciélago", "La ardilla voladora", "El pingüino"], c: "El murciélago" }
-                // Aquí añades tus preguntas de Ciencias Naturales hasta las 300
+                // Aquí añades tus preguntas de Ciencias Naturales hasta llegar a 300
             ],
             sociales: [
                 { q: "¿En qué continente se desarrolló la antigua civilización de los Faraones?", a: ["Asia", "América", "África", "Europa"], c: "África" },
                 { q: "¿Qué gran imperio precolombino habitó y se expandió por la cordillera de los Andes?", a: ["Imperio Azteca", "Imperio Inca", "Civilización Maya", "Los Chibchas"], c: "Imperio Inca" },
                 { q: "¿Cuál es la línea imaginaria horizontal que divide la Tierra en Hemisferio Norte y Sur?", a: ["Meridiano de Greenwich", "Trópico de Cáncer", "Línea del Ecuador", "Círculo Polar"], c: "Línea del Ecuador" }
-                // Aquí añades tus preguntas de Ciencias Sociales hasta las 300
+                // Aquí añades tus preguntas de Ciencias Sociales hasta llegar a 300
             ]
         };
 
         // --- SISTEMA DE NAVEGACIÓN ENTRE JUEGOS ---
         function showGame(gameId) {
-            document.getElementById('game-edukiz').classList.add('hidden');
             document.getElementById('game-jhonreta').classList.add('hidden');
             document.getElementById('game-trivia').classList.add('hidden');
+            
+            document.getElementById('tab-jhonreta').classList.remove('active-math');
+            document.getElementById('tab-trivia').classList.remove('active-trivia');
 
             document.getElementById(`game-${gameId}`).classList.remove('hidden');
 
-            if(gameId === 'jhonreta') { generateMathChallenge(); }
-            if(gameId === 'trivia') { loadTriviaQuestion(); }
+            const windowElement = document.getElementById('mainGameWindow');
+
+            if(gameId === 'jhonreta') {
+                document.getElementById('tab-jhonreta').classList.add('active-math');
+                windowElement.style.borderColor = "var(--math-pink)";
+                generateMathChallenge();
+            }
+            if(gameId === 'trivia') {
+                document.getElementById('tab-trivia').classList.add('active-trivia');
+                windowElement.style.borderColor = "var(--trivia-purple)";
+                loadTriviaQuestion();
+            }
         }
 
         // --- LÓGICA DEL JUEGO: JHON-TE-RETA-EN-MATE ---
@@ -363,7 +362,7 @@
             const dataset = triviaDatabase[currentCategory];
 
             if(index >= dataset.length) {
-                document.getElementById('triviaQuestionBox').innerText = "🎉 ¡Felicidades! Has respondido todos los desafíos disponibles de esta materia.";
+                document.getElementById('triviaQuestionBox').innerText = "🎉 ¡Felicidades! Has completado las preguntas de esta sección.";
                 for(let i=0; i<4; i++) document.getElementById(`to${i}`).classList.add('hidden');
                 return;
             }
@@ -374,7 +373,6 @@
             document.getElementById('triviaQuestionBox').innerText = qData.q;
             document.getElementById('triviaProgress').innerText = index + 1;
 
-            // Mostrar opciones ordenadas
             for(let i=0; i<4; i++) {
                 document.getElementById(`to${i}`).innerText = qData.a[i];
                 document.getElementById(`to${i}`).className = "opt-btn";
@@ -396,6 +394,11 @@
                 setTimeout(() => buttonElement.classList.remove('wrong'), 500);
             }
         }
+
+        // Iniciar directamente con el juego de Jhonny al cargar
+        window.onload = function() {
+            showGame('jhonreta');
+        };
     </script>
 </body>
 </html>
